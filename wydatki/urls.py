@@ -18,10 +18,11 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken import views
 
-from wydatki.views import UserViewSet
+from wydatki.views import UserViewSet, ShopViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'shops', ShopViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
