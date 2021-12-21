@@ -18,6 +18,11 @@ class Receipt(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.SET_NULL, null=True)
     products = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return super().__str__()
+
+
+
 
 
 

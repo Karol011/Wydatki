@@ -15,7 +15,18 @@ class ShopSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'name']
 
 
-class ReceiptSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'price']
+
+
+class ReceiptSerializer(serializers.ModelSerializer):
+    #  products = serializers.PrimaryKeyRelatedField(read_only=True)
+    # products = ProductSerializer(many=True, read_only=True)
+    products = ProductSerializer(read_only=True,many=True)
+
     class Meta:
         model = Receipt
-        fields = ['id', 'purchase_date', 'shop']
+        fields = ['id', 'purchase_date', 'shop', 'products']
+        depth = 1

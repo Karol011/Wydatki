@@ -23,3 +23,8 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     queryset = Receipt.objects.all()
     serializer_class = ReceiptSerializer
     permission_classes = [AllowAny]
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [AllowAny]
