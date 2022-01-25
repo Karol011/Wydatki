@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'wydatki.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wydatki',
+        'NAME': 'wydatkiapp',
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': '127.0.0.1',
