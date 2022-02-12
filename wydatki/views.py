@@ -17,6 +17,12 @@ class ShopViewSet(viewsets.ModelViewSet):
     serializer_class = ShopSerializer
     permission_classes = [AllowAny]
 
+    @action(methods=['get'], detail=True)
+    def receipts(self, request, pk=None):
+        receipts = Receipt.objects.filter(shop_id=pk)
+        serialized_receipts = ReceiptSerializer(receipts, many=True)
+        return Response(serialized_receipts.data)
+
 
 class ReceiptViewSet(viewsets.ModelViewSet):
     queryset = Receipt.objects.all()
@@ -24,9 +30,10 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
 
     @action(methods=['get'], detail=True)
+    #detail true = mozna sie odwolywac do pojedynczej encji (id),
+    #bez tego metoda zwracala by wszystkie obiekty
     def products(self, request, pk=None):
         products = Product.objects.filter(receipt_id=pk)
-       # breakpoint()
         serialized_products = ProductSerializer(products, many=True)
         return Response(serialized_products.data)
 

@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import *
-from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 
@@ -21,7 +20,7 @@ class ShopSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'price', 'receipt']
+        fields = ['id', 'name', 'price', 'receipt_id']
 
 
 class ReceiptSerializer(serializers.ModelSerializer):
@@ -36,5 +35,5 @@ class ReceiptSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Receipt
-        fields = ['id', 'purchase_date', 'shop', 'products']
+        fields = ['id', 'purchase_date', 'shop_id', 'products']
 

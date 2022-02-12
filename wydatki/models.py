@@ -10,7 +10,7 @@ class Shop(models.Model):
 
 class Receipt(models.Model):
     purchase_date = models.DateTimeField(auto_now=True, null=False)
-    shop = models.ForeignKey(Shop, on_delete=models.SET_NULL, null=True)
+    shop = models.ForeignKey(Shop, on_delete=models.DO_NOTHING, null=False)
 
     def __str__(self):
         return super().__str__()
