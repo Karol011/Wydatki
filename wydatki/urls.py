@@ -30,5 +30,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('auth', views.obtain_auth_token),
     path('admin', admin.site.urls),
+    path('receipt/<int:pk>/total', views.total_cost),
 
 ]

@@ -25,6 +25,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class ReceiptSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True,write_only=True)
+    class Meta:
+        model = Receipt
+        fields = ['id', 'purchase_date', 'shop', 'products']
 
     def create(self, validated_data):
         products = validated_data.pop('products')
@@ -33,7 +36,6 @@ class ReceiptSerializer(serializers.ModelSerializer):
             Product.objects.create(**i,receipt=new_receipt)
         return new_receipt
 
-    class Meta:
-        model = Receipt
-        fields = ['id', 'purchase_date', 'shop_id', 'products']
+
+
 

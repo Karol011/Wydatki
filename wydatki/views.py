@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
@@ -30,12 +30,21 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
 
     @action(methods=['get'], detail=True)
-    #detail true = mozna sie odwolywac do pojedynczej encji (id),
-    #bez tego metoda zwracala by wszystkie obiekty
+    # detail true = mozna sie odwolywac do pojedynczej encji (id),
+    # bez tego metoda zwracala by wszystkie obiekty
     def products(self, request, pk=None):
         products = Product.objects.filter(receipt_id=pk)
         serialized_products = ProductSerializer(products, many=True)
         return Response(serialized_products.data)
+
+    @action(methods=['get'], detail=True, name='total cost')
+    def password(self, request, pk=None):
+        """Update the user's password."""
+        ...
+@api_view(['GET'])
+def total_cost(request, pk, format=None):
+
+    return Response
 
 
 class ProductViewSet(viewsets.ModelViewSet):
